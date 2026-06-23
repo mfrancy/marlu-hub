@@ -1,4 +1,10 @@
 @use "bootstrap/scss/bootstrap";
+@import "primeicons/primeicons.css";
+
+
+* {
+  font-family: 'Inter', sans-serif;
+}
 
 body {
   background: #F8F7F3;
@@ -6,6 +12,3 @@ body {
   margin: 0;
 }
 
-html {
-  font-family: 'Inter', sans-serif;
-}

@@ -1,6 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { ProductService } from '../../services/product.service';
+import { Product } from '../../models/product.interface';
 
 @Component({
   selector: 'app-product-list',
@@ -10,10 +11,12 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductList implements OnInit {
   private productService = inject(ProductService);
+  product = signal<Product[]>([])
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((data) => {
-      console.log(data);
+      this.product.set(data)
+      console.log(this.product);
     });
   }
 }
