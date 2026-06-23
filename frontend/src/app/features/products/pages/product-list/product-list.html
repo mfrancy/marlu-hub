@@ -1,3 +1,29 @@
-<div class="mt-2">
-  Teste Bootstrap
-</div>
+<p-card header="Lista de produtos" class="p-4">
+  <div class="flex justify-content-between align-items-center mb-4">
+    <div>
+      <p class="text-color-secondary mt-1 mb-0 text-sm">
+        Consulte todos os produtos cadastrados no sistema
+      </p>
+    </div>
+  </div>
+  <p-table [value]="product()" [rowHover]="true" styleClass="p-datatable-striped">
+    <ng-template #header>
+      <tr>
+        <th>Produto</th>
+        <th>Código revista</th>
+        <th>Marca</th>
+        <th>Quantidade</th>
+        <th>Preço</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-product>
+      <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.code }}</td>
+        <td>{{ product.brand }}</td>
+        <td>{{ product.stockQuantity }}</td>
+        <td>{{ product.salePrice | currency: 'BRL' }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
