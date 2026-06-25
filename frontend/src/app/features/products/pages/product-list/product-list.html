@@ -9,20 +9,18 @@
   <p-table [value]="product()" [rowHover]="true" styleClass="p-datatable-striped">
     <ng-template #header>
       <tr>
-        <th>Produto</th>
         <th>Código revista</th>
+        <th>Produto</th>
+        <th>Descrição</th>
         <th>Marca</th>
-        <th>Quantidade</th>
-        <th>Preço</th>
       </tr>
     </ng-template>
     <ng-template #body let-product>
       <tr>
-        <td>{{ product.name }}</td>
         <td>{{ product.code }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description}}</td>
         <td>{{ product.brand }}</td>
-        <td>{{ product.stockQuantity }}</td>
-        <td>{{ product.salePrice | currency: 'BRL' }}</td>
       </tr>
     </ng-template>
   </p-table>

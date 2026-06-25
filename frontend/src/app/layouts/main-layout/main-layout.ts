@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
 import { RouterOutlet } from "@angular/router";
-import { PanelMenu } from 'primeng/panelmenu';
 
 @Component({
   selector: 'app-main-layout',
-  imports: [MenuModule, RouterOutlet, PanelMenu],
+  imports: [MenuModule, RouterOutlet],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss',
 })
