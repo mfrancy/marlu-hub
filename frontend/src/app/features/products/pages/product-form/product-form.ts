@@ -5,10 +5,11 @@ import { InputNumber } from "primeng/inputnumber";
 import { FloatLabel } from 'primeng/floatlabel';
 import { Select } from "primeng/select";
 import { InputTextModule } from 'primeng/inputtext';
+import { FileUpload } from 'primeng/fileupload';
 
 @Component({
   selector: 'app-product-form',
-  imports: [TableModule, Card, InputNumber, FloatLabel, Select, InputTextModule],
+  imports: [TableModule, Card, InputNumber, FloatLabel, Select, InputTextModule, FileUpload],
   templateUrl: './product-form.html',
   styleUrl: './product-form.scss',
 })
