@@ -1,0 +1,43 @@
+<p-card
+  header="Cadastro de produtos"
+  subheader="Cadastre um novo produto para disponibilizá-lo no catálogo.
+"
+>
+  <div class="row">
+    <div class="col-6">
+      <p-card class="outlined">
+        <div class="row">
+          <div class="col-12 pe-2">
+            <div class="row g-3">
+              <div class="col-6 pe-3">
+                <p-floatlabel variant="on">
+                  <p-inputnumber id="code" fluid />
+                  <label for="code"> Código do produto </label>
+                </p-floatlabel>
+              </div>
+              <div class="col-6">
+                <p-floatlabel variant="on">
+                  <p-select fluid [options]="brandies"></p-select>
+                  <label for="code"> Marca </label>
+                </p-floatlabel>
+              </div>
+              <div class="col-12 ps-2">
+                <p-floatlabel variant="on">
+                  <input pInputText fluid id="name" />
+                  <label for="name"> Nome </label>
+                </p-floatlabel>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-card>
+    </div>
+    <div class="col-6">
+      <p-card class="outlined">
+        <img src="" alt="" />
+        <p class="text-center">Nenhuma imagem selecionada</p>
+        <i class="pi pi-upload"></i>
+      </p-card>
+    </div>
+  </div>
+</p-card>
