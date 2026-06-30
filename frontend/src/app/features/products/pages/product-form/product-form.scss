@@ -4,3 +4,40 @@
     border-radius: 12px;
     box-shadow: none;
 }
+
+.pi-image {
+  font-size: 4rem;
+  color: var(--text-color-secondary);
+}
+
+.image-upload {
+  min-height: 320px;
+
+  border: 2px dashed #d9dee7;
+  border-radius: 12px;
+
+  background: var(--surface-ground);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2rem;
+}
+
+.image-icon {
+  font-size: 4rem;
+  color: var(--text-color-secondary);
+}
+
+.image-title {
+  margin-top: 1.5rem;
+  margin-bottom: .25rem;
+
+  font-weight: 600;
+}
+
+.image-subtitle {
+  color: var(--text-color-secondary);
+}

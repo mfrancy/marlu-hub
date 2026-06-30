@@ -1,4 +1,4 @@
-export interface Product {
+export interface ProductDto {
     id: string;
     name: string;
     code: string;
@@ -6,6 +6,5 @@ export interface Product {
     brand: string;
     category: string;
     imageUrl: string;
-    createdAt: string;
-    updatedAt: string;
+
 }
