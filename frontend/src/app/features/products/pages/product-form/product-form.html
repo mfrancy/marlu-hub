@@ -10,36 +10,78 @@
           <form action="" [formGroup]="productForm">
             <div class="col-12 pe-2">
               <div class="row g-3">
-                <div class="col-4 pe-3">
-                  <p-floatlabel variant="on">
-                    <p-inputnumber id="code" fluid formControlName="code" />
-                    <label for="code"> Código do produto </label>
-                  </p-floatlabel>
-                </div>
-                <div class="col-4">
-                  <p-floatlabel variant="on">
-                    <p-select fluid [options]="brandies" formControlName="brand"></p-select>
-                    <label for="code"> Marca </label>
-                  </p-floatlabel>
-                </div>
-                <div class="col-4">
-                  <p-floatlabel variant="on">
-                    <p-select fluid [options]="categories" formControlName="category"></p-select>
-                    <label for="code"> Marca </label>
-                  </p-floatlabel>
-                </div>
                 <div class="col-12 ps-2">
                   <p-floatlabel variant="on">
-                    <input pInputText fluid id="name" formControlName="name" />
+                    <input
+                      pInputText
+                      fluid
+                      id="name"
+                      formControlName="name"
+                      [invalid]="
+                        productForm.controls.name.touched && productForm.controls.name.invalid
+                      "
+                    />
                     <label for="name"> Nome </label>
                   </p-floatlabel>
+                  @if (isFieldInvalid('name', 'required')) {
+                    <small class="error-message">O campo nome é obrigatório</small>
+                  }
+                </div>
+                <div class="col-4 pe-3">
+                  <p-floatlabel variant="on">
+                    <input
+                      pInputText
+                      fluid
+                      id="code"
+                      fluid
+                      formControlName="code"
+                      [invalid]="
+                        productForm.controls.name.touched && productForm.controls.name.invalid
+                      "
+                    />
+                    <label for="code"> Código do produto </label>
+                  </p-floatlabel>
+                  @if (isFieldInvalid('code', 'required')) {
+                    <small class="error-message">O campo código é obrigatório</small>
+                  }
+                </div>
+                <div class="col-4">
+                  <p-floatlabel variant="on">
+                    <p-select
+                      fluid
+                      [options]="brandies"
+                      [invalid]="
+                        productForm.controls.name.touched && productForm.controls.name.invalid
+                      "
+                      formControlName="brand"
+                    ></p-select>
+                    <label for="code"> Marca </label>
+                  </p-floatlabel>
+                  @if (isFieldInvalid('brand', 'required')) {
+                    <small class="error-message">Selecione uma marca</small>
+                  }
+                </div>
+                <div class="col-4">
+                  <p-floatlabel variant="on">
+                    <p-select
+                      fluid
+                      [options]="categories"
+                      formControlName="category"
+                      [invalid]="
+                        productForm.controls.name.touched && productForm.controls.name.invalid
+                      "
+                    ></p-select>
+                    <label for="category"> Categoria </label>
+                  </p-floatlabel>
+                  @if (isFieldInvalid('category', 'required')) {
+                    <small class="error-message">Selecione uma categoria</small>
+                  }
                 </div>
               </div>
               <div class="mt-4">
                 <div class="image-upload">
                   @if (imagePreview) {
-                   <img src="{{imagePreview}}" alt="imagem upload" class="image">
-                    
+                    <img src="{{ imagePreview }}" alt="imagem upload" class="image" />
                   } @else {
                     <i class="pi pi-image image-icon"></i>
                     <p class="image-title">Nenhuma imagem selecionada</p>
@@ -59,6 +101,7 @@
                     </div>
                   }
                 </div>
+                <p-toast position="bottom-right" key="br" />
               </div>
             </div>
           </form>
@@ -67,6 +110,8 @@
     </div>
   </div>
   <div class="d-flex justify-content-end mt-4 px-3">
-    <p-button (onClick)="onSubmit()">Cadastrar produto</p-button>
+    <p-button (onClick)="onSubmit()" [loading]="loading" [disabled]="loading || productForm.invalid"
+      >Cadastrar produto</p-button
+    >
   </div>
 </p-card>
