@@ -7,55 +7,66 @@
     <div class="">
       <p-card class="outlined">
         <div class="row">
-          <div class="col-12 pe-2">
-            <div class="row g-3">
-              <div class="col-6 pe-3">
-                <p-floatlabel variant="on">
-                  <p-inputnumber id="code" fluid [formControl]="code"/>
-                  <label for="code"> Código do produto </label>
-                </p-floatlabel>
+          <form action="" [formGroup]="productForm">
+            <div class="col-12 pe-2">
+              <div class="row g-3">
+                <div class="col-4 pe-3">
+                  <p-floatlabel variant="on">
+                    <p-inputnumber id="code" fluid formControlName="code" />
+                    <label for="code"> Código do produto </label>
+                  </p-floatlabel>
+                </div>
+                <div class="col-4">
+                  <p-floatlabel variant="on">
+                    <p-select fluid [options]="brandies" formControlName="brand"></p-select>
+                    <label for="code"> Marca </label>
+                  </p-floatlabel>
+                </div>
+                <div class="col-4">
+                  <p-floatlabel variant="on">
+                    <p-select fluid [options]="categories" formControlName="category"></p-select>
+                    <label for="code"> Marca </label>
+                  </p-floatlabel>
+                </div>
+                <div class="col-12 ps-2">
+                  <p-floatlabel variant="on">
+                    <input pInputText fluid id="name" formControlName="name" />
+                    <label for="name"> Nome </label>
+                  </p-floatlabel>
+                </div>
               </div>
-              <div class="col-6">
-                <p-floatlabel variant="on">
-                  <p-select fluid [options]="brandies"></p-select>
-                  <label for="code"> Marca </label>
-                </p-floatlabel>
-              </div>
-              <div class="col-12 ps-2">
-                <p-floatlabel variant="on">
-                  <input pInputText fluid id="name" />
-                  <label for="name"> Nome </label>
-                </p-floatlabel>
-              </div>
-            </div>
-            <div class="mt-4">
-              <div class="image-upload">
-                <i class="pi pi-image image-icon"></i>
-
-                <p class="image-title">Nenhuma imagem selecionada</p>
-
-                <small class="image-subtitle"> JPG, PNG ou WEBP </small>
-
-                <div class="mt-4">
-                  <p-fileUpload
-                    mode="basic"
-                    chooseLabel="Selecionar imagem"
-                    chooseIcon="pi pi-upload"
-                    [auto]="true"
-                    [customUpload]="true"
-                    [multiple]="false"
-                    accept="image/*"
-                    fluid
-                  />
+              <div class="mt-4">
+                <div class="image-upload">
+                  @if (imagePreview) {
+                   <img src="{{imagePreview}}" alt="imagem upload" class="image">
+                    
+                  } @else {
+                    <i class="pi pi-image image-icon"></i>
+                    <p class="image-title">Nenhuma imagem selecionada</p>
+                    <small class="image-subtitle"> JPG, PNG ou WEBP </small>
+                    <div class="mt-4">
+                      <p-fileUpload
+                        mode="basic"
+                        chooseLabel="Selecionar imagem"
+                        chooseIcon="pi pi-upload"
+                        [auto]="true"
+                        [customUpload]="true"
+                        [multiple]="false"
+                        accept="image/*"
+                        fluid
+                        (onSelect)="onSelect($event)"
+                      />
+                    </div>
+                  }
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </p-card>
     </div>
   </div>
   <div class="d-flex justify-content-end mt-4 px-3">
-    <p-button>Cadastrar produto</p-button>
+    <p-button (onClick)="onSubmit()">Cadastrar produto</p-button>
   </div>
 </p-card>

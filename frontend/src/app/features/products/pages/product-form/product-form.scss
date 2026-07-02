@@ -41,3 +41,13 @@
 .image-subtitle {
   color: var(--text-color-secondary);
 }
+
+.image {
+  width: 100%;
+  max-width: 720px;
+  height: 360px;
+
+  object-fit: contain;
+
+  border-radius: 8px;
+}
