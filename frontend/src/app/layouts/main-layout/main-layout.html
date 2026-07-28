@@ -1,17 +1,10 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="logo">Marluhub</div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-2">
-      <p-menu [model]="items"></p-menu>
-    </div>
-    <div class="col">
-      <main class="content">  
-        <router-outlet />
-      </main>
-    </div>
-  </div>
-</div> 
+<div class="layout">
+  <aside class="sidebar">
+    <div class="logo">MarluHub</div>
+    <p-menu [model]="items"></p-menu>
+  </aside>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

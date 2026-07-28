@@ -1,5 +1,19 @@
-
 p-menu {
   --p-menu-background: #F8FAFC;
   --p-menu-border-color: transparent;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
 }
