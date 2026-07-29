@@ -1,0 +1,37 @@
+<p-dialog [(visible)]="visible" header="Editar produto" (onHide)="closeModal()">
+  <span> Atualize as informações do produto </span>
+  <form action="" class="" [formGroup]="editForm">
+    <div class="mt-4 row g-2">
+      <div class="col-6">
+        <p-floatlabel variant="on">
+          <input type="text" pInputText fluid formControlName="name" />
+          <label for="">Nome</label>
+        </p-floatlabel>
+      </div>
+      <div class="col-6">
+        <p-floatlabel variant="on">
+          <input type="text" pInputText fluid formControlName="code" />
+          <label for="">Código do produto</label>
+        </p-floatlabel>
+      </div>
+      <div class="col-6">
+        <p-floatlabel variant="on">
+          <p-select fluid [options]="brandies" formControlName="brand"></p-select>
+          <label for="code"> Marca </label>
+        </p-floatlabel>
+      </div>
+      <div class="col-6">
+        <p-floatlabel variant="on">
+          <p-select fluid [options]="categories" formControlName="category"></p-select>
+          <label for="code"> Categoria </label>
+        </p-floatlabel>
+      </div>
+      <div class="mt-4">
+        <div class="image-upload">
+          <i class="pi pi-image image-icon"></i>
+        </div>
+      </div>
+    </div>
+    <button>Salvar</button>
+  </form>
+</p-dialog>

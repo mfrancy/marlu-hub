@@ -6,22 +6,30 @@
       </p>
     </div>
   </div>
-  <p-table [value]="product()" [rowHover]="true" styleClass="p-datatable-striped">
+  <p-table [value]="product()" [rowHover]="true" class="p-datatable-striped">
     <ng-template #header>
       <tr>
         <th>Código revista</th>
         <th>Produto</th>
         <th>Descrição</th>
         <th>Marca</th>
+        <th>Ações</th>
       </tr>
     </ng-template>
     <ng-template #body let-product>
       <tr>
         <td>{{ product.code }}</td>
         <td>{{ product.name }}</td>
-        <td>{{ product.description}}</td>
+        <td>{{ product.description}}</td  >
         <td>{{ product.brand }}</td>
+        <td>
+          <div class="d-flex">
+            <p-button icon="pi pi-pencil" [text]="true" [rounded]="true" (onClick)="showDialog(product)"></p-button>
+            <p-button icon="pi pi-trash" [text]="true" [rounded]="true"></p-button>    
+          </div>
+        </td>
       </tr>
     </ng-template>
   </p-table>
 </p-card>
+<app-edit-product [visible]="editDialogVisible" [product]="dataProduct" (visibleChange)="editDialogVisible = $event"></app-edit-product>

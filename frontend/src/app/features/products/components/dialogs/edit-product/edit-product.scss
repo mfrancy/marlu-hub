@@ -1,0 +1,47 @@
+.outlined {
+    background: var(--surface-card);
+    border: 1px solid #d9dee7;
+    border-radius: 12px;
+    box-shadow: none;
+}
+
+p-dialog {
+    --p-dialog-background: #f8f7f3
+}
+
+.pi-image {
+  font-size: 4rem;
+  color: var(--text-color-secondary);
+}
+
+.image-upload {
+  min-height: 320px;
+  background-color: #fcfcfc;
+
+  border: 2px dashed #d9dee7;
+  border-radius: 12px;
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2rem;
+}
+
+.image-icon {
+  font-size: 4rem;
+  color: var(--text-color-secondary);
+}
+
+
+.image {
+  width: 100%;
+  max-width: 720px;
+  height: 360px;
+
+  object-fit: contain;
+
+  border-radius: 8px;
+}
