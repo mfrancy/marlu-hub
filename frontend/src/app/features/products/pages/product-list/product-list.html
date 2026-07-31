@@ -24,8 +24,8 @@
         <td>{{ product.brand }}</td>
         <td>
           <div class="d-flex">
-            <p-button icon="pi pi-pencil" [text]="true" [rounded]="true" (onClick)="showDialog(product)"></p-button>
-            <p-button icon="pi pi-trash" [text]="true" [rounded]="true"></p-button>    
+            <p-button icon="pi pi-pencil" [text]="true" [rounded]="true" (onClick)="showEditDialog(product)"></p-button>
+            <p-button icon="pi pi-trash" [text]="true" [rounded]="true" (onClick)="showConfirmDialog(product)"></p-button>    
           </div>
         </td>
       </tr>
@@ -33,3 +33,4 @@
   </p-table>
 </p-card>
 <app-edit-product [visible]="editDialogVisible" [product]="dataProduct" (visibleChange)="editDialogVisible = $event" (productUpdated)="onUpdated()"></app-edit-product>
+<app-confirm-dialog [visible]="confirmDialogVisible" [product]="dataProduct" (visibleChange)="confirmDialogVisible = $event" (deletedProduct)="onDeleted()"></app-confirm-dialog>

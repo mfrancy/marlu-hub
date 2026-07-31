@@ -5,11 +5,11 @@ import { Product } from '../../models/product.interface';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { EditProduct } from '../../components/dialogs/edit-product/edit-product';
-import { event } from '@primeuix/themes/aura/timeline';
+import { ConfirmDialog } from '../../../shared/confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-product-list',
-  imports: [ButtonModule, CardModule, TableModule, EditProduct],
+  imports: [ButtonModule, ConfirmDialog, CardModule, TableModule, EditProduct],
   templateUrl: './product-list.html',
   styleUrl: './product-list.scss',
 })
@@ -17,12 +17,13 @@ export class ProductList implements OnInit {
   private productService = inject(ProductService);
   product = signal<Product[]>([]);
   editDialogVisible: boolean = false;
+  confirmDialogVisible: boolean = false;
   dataProduct?: Product;
 
   ngOnInit(): void {
-    this.loadProducts()
+    this.loadProducts();
   }
-  
+
   loadProducts() {
     this.productService.getProducts().subscribe((data) => {
       this.product.set(data);
@@ -30,12 +31,21 @@ export class ProductList implements OnInit {
     });
   }
 
-  showDialog(data: Product) {
+  showEditDialog(data: Product) {
     this.dataProduct = data;
     this.editDialogVisible = true;
   }
 
+  showConfirmDialog(data: Product) {
+    this.dataProduct = data
+    this.confirmDialogVisible = true;
+  }
+
   onUpdated() {
-    this.loadProducts()
+    this.loadProducts();
+  }
+  
+  onDeleted() {
+    this.loadProducts();
   }
 }

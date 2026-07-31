@@ -35,7 +35,7 @@ import { ToastModule } from 'primeng/toast';
   templateUrl: './edit-product.html',
   styleUrl: './edit-product.scss',
 })
-export class EditProduct implements OnInit, OnChanges {
+export class EditProduct implements OnChanges {
   private fb = inject(FormBuilder);
   private productService = inject(ProductService);
   private msgService = inject(MessageService);
@@ -44,7 +44,7 @@ export class EditProduct implements OnInit, OnChanges {
   @Input() visible: boolean = false;
   @Output() visibleChange = new EventEmitter();
   @Input() product?: Product;
-  @Output() productUpdated = new EventEmitter()
+  @Output() productUpdated = new EventEmitter();
 
   closeModal() {
     this.visible = false;
@@ -62,8 +62,6 @@ export class EditProduct implements OnInit, OnChanges {
   brandies = ['Natura', 'Boticário', 'Eudora', 'Avon'];
 
   categories = ['Perfume', 'Hidratante', 'Sabonete', 'Cabelo', 'Maquiagem', 'Corpo'];
-
-  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes['product']) {
