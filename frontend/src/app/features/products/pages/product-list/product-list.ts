@@ -20,6 +20,10 @@ export class ProductList implements OnInit {
   dataProduct?: Product;
 
   ngOnInit(): void {
+    this.loadProducts()
+  }
+  
+  loadProducts() {
     this.productService.getProducts().subscribe((data) => {
       this.product.set(data);
       console.log(this.product);
@@ -29,5 +33,9 @@ export class ProductList implements OnInit {
   showDialog(data: Product) {
     this.dataProduct = data;
     this.editDialogVisible = true;
+  }
+
+  onUpdated() {
+    this.loadProducts()
   }
 }

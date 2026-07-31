@@ -1,7 +1,7 @@
 <p-dialog [(visible)]="visible" header="Editar produto" (onHide)="closeModal()">
   <span> Atualize as informações do produto </span>
   <form action="" class="" [formGroup]="editForm">
-    <div class="mt-4 row g-2">
+    <div class="mt-4 row g-2 px-2">
       <div class="col-6">
         <p-floatlabel variant="on">
           <input type="text" pInputText fluid formControlName="name" />
@@ -32,6 +32,8 @@
         </div>
       </div>
     </div>
-    <button>Salvar</button>
+    <div class="px-2 d-flex mt-3 justify-content-end">
+      <p-button (onClick)="onSubmit()" [loading]="loading">Salvar</p-button>
+    </div>
   </form>
 </p-dialog>
