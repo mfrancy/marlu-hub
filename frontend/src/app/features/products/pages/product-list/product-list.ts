@@ -1,24 +1,41 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, output, Output, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.interface';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
+import { EditProduct } from '../../components/dialogs/edit-product/edit-product';
+import { event } from '@primeuix/themes/aura/timeline';
 
 @Component({
   selector: 'app-product-list',
-  imports: [ButtonModule, CardModule, TableModule],
+  imports: [ButtonModule, CardModule, TableModule, EditProduct],
   templateUrl: './product-list.html',
   styleUrl: './product-list.scss',
 })
 export class ProductList implements OnInit {
   private productService = inject(ProductService);
-  product = signal<Product[]>([])
+  product = signal<Product[]>([]);
+  editDialogVisible: boolean = false;
+  dataProduct?: Product;
 
   ngOnInit(): void {
+    this.loadProducts()
+  }
+  
+  loadProducts() {
     this.productService.getProducts().subscribe((data) => {
-      this.product.set(data)
+      this.product.set(data);
       console.log(this.product);
     });
+  }
+
+  showDialog(data: Product) {
+    this.dataProduct = data;
+    this.editDialogVisible = true;
+  }
+
+  onUpdated() {
+    this.loadProducts()
   }
 }

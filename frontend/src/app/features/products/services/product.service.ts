@@ -16,7 +16,14 @@ export class ProductService {
   createProduct(dto: ProductDto) {
     return this.http.post<Product>(
       'https://6a34abf68248ee962fa58a3f.mockapi.io/api/products',
-      dto,
+      dto
     );
+  }
+
+  editProduct(id: string, dto: ProductDto) {
+    return this.http.put<Product>(
+      `https://6a34abf68248ee962fa58a3f.mockapi.io/api/products/${id}`,
+      dto
+    )
   }
 }
