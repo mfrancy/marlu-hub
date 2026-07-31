@@ -6,10 +6,13 @@ import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { EditProduct } from '../../components/dialogs/edit-product/edit-product';
 import { ConfirmDialog } from '../../../shared/confirm-dialog/confirm-dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { IconField } from 'primeng/iconfield';
+import { InputIcon } from 'primeng/inputicon';
 
 @Component({
   selector: 'app-product-list',
-  imports: [ButtonModule, ConfirmDialog, CardModule, TableModule, EditProduct],
+  imports: [ButtonModule, ConfirmDialog, CardModule, TableModule, EditProduct, InputTextModule, IconField, InputIcon],
   templateUrl: './product-list.html',
   styleUrl: './product-list.scss',
 })
@@ -23,7 +26,6 @@ export class ProductList implements OnInit {
   ngOnInit(): void {
     this.loadProducts();
   }
-
   loadProducts() {
     this.productService.getProducts().subscribe((data) => {
       this.product.set(data);
