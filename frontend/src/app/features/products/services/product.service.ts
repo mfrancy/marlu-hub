@@ -26,4 +26,8 @@ export class ProductService {
       dto
     )
   }
+
+  deleteProduct(id: string) {
+    return this.http.delete<Product>(`https://6a34abf68248ee962fa58a3f.mockapi.io/api/products/${id}`)
+  }
 }

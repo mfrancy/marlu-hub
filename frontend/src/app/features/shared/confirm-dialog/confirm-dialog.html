@@ -1,0 +1,7 @@
+<p-dialog [(visible)]="visible" header="Apagar produto?" (onHide)="closeModal()" class="px-2">
+  Você tem certeza que deseja excluir o produto {{ product?.name }}? <br />Esta ação não pode ser
+  desfeita.
+  <div class="mt-4 d-flex justify justify-content-end">
+    <p-button severity="danger" (onClick)="deleteProduct()">Apagar</p-button>
+  </div>
+</p-dialog>
