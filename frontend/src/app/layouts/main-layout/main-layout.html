@@ -1,10 +1,17 @@
 <div class="layout">
   <aside class="sidebar">
-    <div class="logo">MarluHub</div>
+    <div class="sidebar-header">
+      <img src="assets/logo.png"
+           class="logo"
+           alt="MarluHub">
+    </div>
     <p-menu [model]="items"></p-menu>
   </aside>
+  <section class="main">
+    <app-navbar></app-navbar>
+    <main class="content px-4">
+      <router-outlet></router-outlet>
+    </main>
+  </section>
 
-  <main class="content">
-    <router-outlet></router-outlet>
-  </main>
 </div>
