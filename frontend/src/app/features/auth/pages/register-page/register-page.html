@@ -1,0 +1,104 @@
+<section class="register-page">
+  <div class="register-card">
+    <div class="register-visual">
+      <div class="brand-pill">
+        <img src="assets/logo.png" alt="MarluHub" class="brand-icon" />
+      </div>
+
+      <div class="visual-copy">
+        <p class="eyebrow">MarluHub</p>
+        <h1>Organize seu negócio com um cadastro elegante e rápido.</h1>
+        <p class="lead">
+          Centralize produtos, clientes e catálogo em uma interface pensada para revendedores
+          independentes.
+        </p>
+      </div>
+
+      <div class="visual-illustration">
+        <img src="assets/undraw_subscribe.svg" alt="Ilustração de assinatura e cadastro" />
+      </div>
+
+      <div class="feature-stack">
+        <div class="feature-item">
+          <i class="pi pi-check-circle"></i>
+          <span>Catálogo online em poucos passos</span>
+        </div>
+        <div class="feature-item">
+          <i class="pi pi-check-circle"></i>
+          <span>Visual clean com identidade MarluHub</span>
+        </div>
+        <div class="feature-item">
+          <i class="pi pi-check-circle"></i>
+          <span>Controle do seu inventário com confiança</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="register-form-panel">
+      <div class="form-intro">
+        <span class="eyebrow">Cadastro</span>
+        <h2>Crie sua conta</h2>
+        <p>Preencha os dados abaixo para começar sua jornada no MarluHub.</p>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+        <div class="field">
+          <p-floatlabel variant="on">
+            <input pInputText id="fullName" formControlName="fullName" />
+            <label for="fullName">Nome completo</label>
+          </p-floatlabel>
+          @if (isFieldInvalid('fullName', 'required')) {
+            <small class="error-message">Informe seu nome completo.</small>
+          }
+        </div>
+
+        <div class="field">
+          <p-floatlabel variant="on">
+            <input pInputText id="email" formControlName="email" />
+            <label for="email">E-mail</label>
+          </p-floatlabel>
+          @if (isFieldInvalid('email', 'required')) {
+            <small class="error-message">Informe seu e-mail.</small>
+          } @else if (isFieldInvalid('email', 'email')) {
+            <small class="error-message">Informe um e-mail válido.</small>
+          }
+        </div>
+
+        <div class="field">
+          <p-floatlabel variant="on">
+            <p-password formControlName="password" [feedback]="false" inputId="password" />
+            <label for="password">Senha</label>
+          </p-floatlabel>
+          @if (isFieldInvalid('password', 'required')) {
+            <small class="error-message">Informe uma senha.</small>
+          } @else if (isFieldInvalid('password', 'minlength')) {
+            <small class="error-message">A senha deve ter no mínimo 6 caracteres.</small>
+          }
+        </div>
+
+        <div class="field">
+          <p-floatlabel variant="on">
+            <p-password
+              formControlName="confirmPassword"
+              [feedback]="false"
+              inputId="confirmPassword"
+            />
+            <label for="confirmPassword">Confirmar senha</label>
+          </p-floatlabel>
+          @if (isFieldInvalid('confirmPassword', 'required')) {
+            <small class="error-message">Confirme sua senha.</small>
+          } @else if (passwordsDoNotMatch()) {
+            <small class="error-message">As senhas não coincidem.</small>
+          }
+        </div>
+
+        <button pButton type="submit" class="submit-button" label="Criar conta"></button>
+      </form>
+
+      <p class="footer-copy">
+        Já possui conta?
+        <a routerLink="/products">Acesse o dashboard</a>
+      </p>
+    </div>
+  </div>
+</section>
