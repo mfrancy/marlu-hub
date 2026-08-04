@@ -14,6 +14,10 @@
         </p>
       </div>
 
+      <div class="visual-illustration">
+        <img src="assets/undraw_subscribe.svg" alt="Ilustração de assinatura e cadastro" />
+      </div>
+
       <div class="feature-stack">
         <div class="feature-item">
           <i class="pi pi-check-circle"></i>
@@ -74,7 +78,11 @@
 
         <div class="field">
           <p-floatlabel variant="on">
-            <p-password formControlName="confirmPassword" [feedback]="false" inputId="confirmPassword" />
+            <p-password
+              formControlName="confirmPassword"
+              [feedback]="false"
+              inputId="confirmPassword"
+            />
             <label for="confirmPassword">Confirmar senha</label>
           </p-floatlabel>
           @if (isFieldInvalid('confirmPassword', 'required')) {

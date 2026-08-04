@@ -3,34 +3,32 @@
 }
 
 .register-page {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 1.5rem;
-  background:
-    radial-gradient(circle at top left, rgba(214, 183, 117, 0.35), transparent 24%),
-    linear-gradient(135deg, #f8f7f3 0%, #f2f1eb 100%);
+  align-items: center;
+  padding: 1rem;
 }
 
 .register-card {
-  width: min(1100px, 100%);
-  min-height: 720px;
+  width: 100%;
+  max-width: 1400px;
+  min-height: calc(100dvh - 2rem);
+
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border-radius: 28px;
+
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 24px 70px rgba(33, 68, 43, 0.16);
 }
 
 .register-visual {
-  padding: 3rem;
+  padding: 1.25rem 1.35rem;
   background: linear-gradient(180deg, #ffffff 0%, #f5f3ec 100%);
   color: #2c2c2c;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 2rem;
+  gap: 0.95rem;
 }
 
 .brand-pill {
@@ -40,49 +38,63 @@
 }
 
 .brand-icon {
-  width: 180px;
+  width: 130px;
   height: auto;
-  filter: drop-shadow(0 12px 26px rgba(42, 86, 54, 0.22));
+  filter: drop-shadow(0 10px 22px rgba(42, 86, 54, 0.2));
 }
 
 .eyebrow {
   display: inline-block;
   text-transform: uppercase;
   letter-spacing: 0.24em;
-  font-size: 0.73rem;
+  font-size: 0.68rem;
   font-weight: 700;
   color: #4c8b5b;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .visual-copy h1 {
   margin: 0;
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
-  line-height: 1.05;
+  font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+  line-height: 1.12;
   color: #21442b;
 }
 
 .lead {
-  margin: 1rem 0 0;
-  font-size: 1rem;
-  line-height: 1.7;
+  margin: 0.7rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
   color: #4f5a52;
-  max-width: 36rem;
+  max-width: 34rem;
+}
+
+.visual-illustration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.1rem 0;
+}
+
+.visual-illustration img {
+  width: min(100%, 215px);
+  height: auto;
+  filter: drop-shadow(0 12px 24px rgba(42, 86, 54, 0.16));
 }
 
 .feature-stack {
   display: grid;
-  gap: 0.85rem;
+  gap: 0.55rem;
 }
 
 .feature-item {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  padding: 0.9rem 1rem;
+  gap: 0.7rem;
+  padding: 0.7rem 0.85rem;
   border: 1px solid rgba(42, 86, 54, 0.12);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.78);
+  font-size: 0.88rem;
 }
 
 .feature-item i {
@@ -90,7 +102,7 @@
 }
 
 .register-form-panel {
-  padding: 3rem;
+  padding: 1.35rem;
   background: linear-gradient(135deg, #21442b 0%, #2a5636 100%);
   display: flex;
   flex-direction: column;
@@ -100,23 +112,25 @@
 
 .form-intro h2 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.7rem;
+  line-height: 1.15;
 }
 
 .form-intro p {
-  margin: 0.8rem 0 0;
+  margin: 0.6rem 0 0;
+  font-size: 0.92rem;
   color: rgba(255, 255, 255, 0.75);
 }
 
 .register-form {
   display: grid;
-  gap: 1.15rem;
-  margin-top: 1.75rem;
+  gap: 0.7rem;
+  margin-top: 1rem;
 }
 
 .field {
   display: grid;
-  gap: 0.45rem;
+  gap: 0.25rem;
 }
 
 ::ng-deep .register-form .p-floatlabel {
@@ -126,8 +140,9 @@
 ::ng-deep .register-form .p-inputtext,
 ::ng-deep .register-form .p-password-input {
   width: 100%;
-  border-radius: 14px;
-  padding: 1rem 1rem;
+  border-radius: 12px;
+  padding: 0.78rem 0.9rem;
+  min-height: 2.8rem;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.24);
   color: #ffffff;
@@ -158,9 +173,10 @@
 }
 
 .submit-button {
-  margin-top: 0.4rem;
+  margin-top: 0.3rem;
   width: 100%;
-  border-radius: 14px;
+  border-radius: 12px;
+  min-height: 2.9rem;
   background: #d6b775;
   border: none;
   color: #21442b;
@@ -172,7 +188,8 @@
 }
 
 .footer-copy {
-  margin: 1.3rem 0 0;
+  margin: 0.85rem 0 0;
+  font-size: 0.88rem;
   color: rgba(255, 255, 255, 0.82);
 }
 
@@ -182,13 +199,53 @@
   font-weight: 700;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 992px) {
   .register-card {
     grid-template-columns: 1fr;
   }
 
   .register-visual,
   .register-form-panel {
-    padding: 2rem;
+    padding: 1.35rem;
+  }
+
+  .visual-illustration {
+    display: none;
+  }
+
+  .feature-stack {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-height: 760px) {
+  .register-visual {
+    gap: 0.75rem;
+  }
+
+  .feature-stack {
+    display: none;
+  }
+
+  .visual-illustration img {
+    width: min(100%, 180px);
+  }
+}
+
+@media (max-width: 540px) {
+  .register-page {
+    padding: 0.75rem;
+  }
+
+  .brand-icon {
+    width: 110px;
+  }
+
+  .visual-copy h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-intro h2 {
+    font-size: 1.5rem;
   }
 }
