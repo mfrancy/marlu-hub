@@ -1,0 +1,106 @@
+<section class="login-page">
+  <div class="login-shell">
+    <aside class="login-hero">
+      <div class="hero-topbar">
+        <span class="hero-badge">MarluHub • ERP</span>
+        <span class="hero-microcopy">Operação em tempo real</span>
+      </div>
+
+      <div class="hero-copy">
+        <p class="eyebrow">Acesso ao painel</p>
+        <h1>Organize seu negócio com clareza e velocidade.</h1>
+        <p class="hero-text">
+          Centralize informações e mantenha sua rotina operacional conectada em uma experiência
+          moderna, segura e profissional.
+        </p>
+      </div>
+
+      <div class="hero-kpis">
+        <article class="stat-card">
+          <span class="stat-value">24h</span>
+          <span class="stat-label">Sincronização inteligente</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-value">08</span>
+          <span class="stat-label">Fluxos organizados</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-value">100%</span>
+          <span class="stat-label">Visão executiva</span>
+        </article>
+      </div>
+
+      <div class="hero-panel">
+        <div>
+          <p class="panel-label">Visão geral</p>
+          <strong>Dashboard operacional</strong>
+        </div>
+        <div class="panel-note">Produto, clientes e inventário em uma única superfície.</div>
+      </div>
+    </aside>
+
+    <main class="login-form-area">
+      <p-card class="login-card">
+        <div class="card-logo-row">
+          <img src="assets/logo.png" alt="MarluHub" class="brand-icon" />
+          <span class="logo-caption">Sistema de gestão</span>
+        </div>
+
+        <div class="card-intro">
+          <p class="eyebrow">Login</p>
+          <h2>Entre no seu workspace</h2>
+          <p>Continue com seu e-mail corporativo e senha para acessar o painel.</p>
+        </div>
+
+        <p-divider></p-divider>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+          <div class="field">
+            <label class="input-label" for="email">E-mail</label>
+            <p-inputgroup>
+              <p-inputgroup-addon>
+                <i class="pi pi-envelope"></i>
+              </p-inputgroup-addon>
+              <input pInputText id="email" formControlName="email" />
+            </p-inputgroup>
+            @if (isFieldInvalid('email', 'required')) {
+              <small class="error-message">Informe seu e-mail.</small>
+            } @else if (isFieldInvalid('email', 'email')) {
+              <small class="error-message">Informe um e-mail válido.</small>
+            }
+          </div>
+
+          <div class="field">
+            <label class="input-label" for="password">Senha</label>
+            <p-inputgroup>
+              <p-inputgroup-addon>
+                <i class="pi pi-lock"></i>
+              </p-inputgroup-addon>
+              <p-password formControlName="password" [feedback]="false" inputId="password" />
+            </p-inputgroup>
+            @if (isFieldInvalid('password', 'required')) {
+              <small class="error-message">Informe sua senha.</small>
+            } @else if (isFieldInvalid('password', 'minlength')) {
+              <small class="error-message">A senha deve ter no mínimo 6 caracteres.</small>
+            }
+          </div>
+
+          <div class="form-row">
+            <label class="checkbox-row">
+              <p-checkbox [binary]="true" />
+              <span>Lembrar acesso</span>
+            </label>
+            <a class="help-link" routerLink="/register">Esqueceu a senha?</a>
+          </div>
+
+          <button pButton type="submit" class="submit-button" label="Entrar no painel"></button>
+        </form>
+
+        <p class="footer-copy">
+          Ainda não possui conta?
+          <a routerLink="/register">Crie sua conta</a>
+        </p>
+      </p-card>
+    </main>
+  </div>
+</section>

@@ -1,0 +1,362 @@
+:host {
+  display: block;
+}
+
+.login-page {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background:
+    radial-gradient(circle at top left, rgba(214, 183, 117, 0.22), transparent 28%),
+    linear-gradient(135deg, #f6f4ec 0%, #eef3ee 100%);
+}
+
+.login-shell {
+  width: min(1220px, 100%);
+  max-height: calc(100dvh - 2rem);
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1rem;
+}
+
+.login-hero,
+.login-form-area {
+  min-height: 0;
+}
+
+.login-hero {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  gap: 1rem;
+  padding: 1.35rem;
+  border-radius: 28px;
+  background: linear-gradient(160deg, #ffffff 0%, #f4f2e9 100%);
+  box-shadow: 0 18px 40px rgba(16, 37, 20, 0.12);
+}
+
+.hero-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero-badge,
+.hero-microcopy {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.38rem 0.72rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.hero-badge {
+  background: rgba(44, 92, 58, 0.12);
+  color: #2a5636;
+}
+
+.hero-microcopy {
+  background: rgba(214, 183, 117, 0.24);
+  color: #6d5523;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1.06;
+  color: #1d3a26;
+}
+
+.hero-text {
+  margin: 0.9rem 0 0;
+  max-width: 42rem;
+  color: #526059;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.hero-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.stat-card {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.95rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(42, 86, 54, 0.12);
+}
+
+.stat-value {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #21442b;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: #5f6b63;
+}
+
+.hero-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #21442b 0%, #2a5636 100%);
+  color: #ffffff;
+}
+
+.panel-label {
+  margin: 0 0 0.18rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  opacity: 0.8;
+}
+
+.panel-note {
+  max-width: 14rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.login-form-area {
+  display: flex;
+  align-items: stretch;
+}
+
+::ng-deep .login-card {
+  width: 100%;
+}
+
+::ng-deep .login-card .p-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(42, 86, 54, 0.1);
+  box-shadow: 0 20px 42px rgba(12, 27, 16, 0.14);
+  background: linear-gradient(180deg, #ffffff 0%, #f8f7f1 100%);
+}
+
+::ng-deep .login-card .p-card-body {
+  padding: 1.5rem;
+}
+
+.card-logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.brand-icon {
+  width: 130px;
+  height: auto;
+  filter: drop-shadow(0 10px 22px rgba(42, 86, 54, 0.2));
+}
+
+.logo-caption {
+  font-size: 0.8rem;
+  color: #6a776c;
+}
+
+.card-intro h2 {
+  margin: 0;
+  font-size: clamp(1.55rem, 2.2vw, 2rem);
+  line-height: 1.1;
+  color: #21442b;
+}
+
+.card-intro p:last-child {
+  margin: 0.55rem 0 0;
+  color: #5f6b63;
+  font-size: 0.92rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #4c8b5b;
+  margin-bottom: 0.55rem;
+}
+
+.login-form {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.input-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #2d4b34;
+}
+
+::ng-deep .login-form .p-inputgroup {
+  width: 100%;
+}
+
+::ng-deep .login-form .p-inputgroup-addon {
+  min-width: 2.75rem;
+  background: rgba(42, 86, 54, 0.08);
+  color: #2a5636;
+  border: 1px solid rgba(42, 86, 54, 0.18);
+}
+
+::ng-deep .login-form .p-inputtext,
+::ng-deep .login-form .p-password-input {
+  width: 100%;
+  min-height: 2.85rem;
+  border-radius: 0 12px 12px 0;
+  border: 1px solid rgba(42, 86, 54, 0.22);
+  background: #ffffff;
+  color: #1f2d24;
+}
+
+::ng-deep .login-form .p-password {
+  width: 100%;
+}
+
+::ng-deep .login-form .p-inputtext:focus,
+::ng-deep .login-form .p-password-input:focus {
+  border-color: #d6b775;
+  box-shadow: 0 0 0 3px rgba(214, 183, 117, 0.24);
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.checkbox-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.82rem;
+  color: #4e5c55;
+}
+
+.help-link,
+.footer-copy a {
+  text-decoration: none;
+  color: #2a5636;
+  font-weight: 700;
+}
+
+.help-link {
+  font-size: 0.8rem;
+}
+
+.submit-button {
+  margin-top: 0.3rem;
+  width: 100%;
+  border-radius: 12px;
+  min-height: 3rem;
+  background: linear-gradient(135deg, #21442b 0%, #2a5636 100%);
+  border: none;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.submit-button:hover {
+  background: linear-gradient(135deg, #1a3823 0%, #234b2c 100%);
+}
+
+.error-message {
+  color: #9d3f3f;
+  font-size: 0.78rem;
+}
+
+.footer-copy {
+  margin: 1rem 0 0;
+  font-size: 0.88rem;
+  color: #617067;
+}
+
+@media (max-width: 1024px) {
+  .login-shell {
+    grid-template-columns: 1fr;
+    max-height: unset;
+  }
+
+  .hero-kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-height: 760px) {
+  .login-page {
+    padding: 0.75rem;
+  }
+
+  .login-shell {
+    gap: 0.75rem;
+  }
+
+  .login-hero {
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .hero-text,
+  .panel-note,
+  .logo-caption,
+  .hero-microcopy {
+    display: none;
+  }
+
+  .hero-kpis {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .stat-card {
+    padding: 0.7rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .login-page {
+    padding: 0.65rem;
+  }
+
+  .hero-topbar,
+  .form-row,
+  .card-logo-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-copy h1 {
+    font-size: 1.6rem;
+  }
+
+  .brand-icon {
+    width: 110px;
+  }
+}
