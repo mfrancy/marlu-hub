@@ -10,6 +10,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { userLogin } from '../../models/login.dto';
 
 @Component({
   selector: 'app-login-page',
@@ -49,5 +50,9 @@ export class LoginPage {
   isFieldInvalid(controlName: string, error: string): boolean {
     const control = this.loginForm.get(controlName);
     return !!(control?.touched && control?.hasError(error));
+  }
+
+  onLogin(body: userLogin) {
+    
   }
 }
