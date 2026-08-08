@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MarluHub.Api.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace MarluHub.Api.Data;
 
@@ -9,6 +10,8 @@ public class MarluHubContext : DbContext
     {
         
     }
+
+    public DbSet<Product> Products { get; set; }
 
    
 
