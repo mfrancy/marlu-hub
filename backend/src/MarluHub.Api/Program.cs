@@ -1,14 +1,21 @@
 using MarluHub.Api.Data;
+using MarluHub.Api.Mapping;
+using MarluHub.Api.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<ProductService>();
 builder.Services.AddDbContext<MarluHubContext>(options => {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<ProductProfile>();
+});
 
 var app = builder.Build();
 
