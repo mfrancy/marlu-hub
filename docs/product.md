@@ -2,7 +2,8 @@
 
 ## Visão Geral
 
-MarluHub é uma plataforma para auxiliar revendedores independentes na gestão de estoque, vendas, clientes e catálogo online.
+MarluHub é uma aplicação pessoal para auxiliar uma revendedora de produtos de beleza
+na gestão de estoque, vendas, clientes e catálogo online.
 
 O sistema surgiu a partir da necessidade de organizar o processo de revenda de produtos de beleza, atualmente controlado por meio de cadernos e consultas manuais ao estoque.
 
@@ -36,13 +37,11 @@ Atualmente o processo de venda apresenta algumas dificuldades:
 
 ### Principal
 
-* Revendedores independentes de produtos de beleza.
+* Uma revendedora de produtos de beleza, inicialmente responsável pela operação de
+  Natura e O Boticário.
 
-### Futuro
-
-* Pequenos empreendedores.
-* Revendedores de cosméticos.
-* Vendedores autônomos.
+O projeto não tem, no escopo atual, objetivo de atender múltiplas empresas,
+revendedoras ou assinaturas.
 
 ---
 
@@ -54,8 +53,10 @@ A primeira versão do sistema deve contemplar:
 
 * Cadastro de produtos.
 * Edição de produtos.
-* Exclusão de produtos.
+* Exclusão ou inativação de produtos, conforme regra de preservação do histórico a ser
+  definida.
 * Controle de quantidade em estoque.
+* Preço de compra e preço de venda.
 
 ### Catálogo Online
 
@@ -78,13 +79,15 @@ A primeira versão do sistema deve contemplar:
 
 * Registro de vendas.
 * Histórico de vendas.
-* Controle de faturamento.
+* Controle de pagamentos, parcelas e saldo devedor.
+* Cancelamento e edição preservando pagamentos.
+* Registro separado de devoluções.
 
 ### Clientes
 
 * Cadastro de clientes.
 * Histórico de compras.
-* Controle de pagamentos pendentes.
+* Associação opcional de clientes às vendas.
 
 ### Financeiro
 

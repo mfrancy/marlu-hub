@@ -10,24 +10,24 @@ export class ProductService {
   private http = inject(HttpClient);
 
   getProducts() {
-    return this.http.get<Product[]>('https://6a34abf68248ee962fa58a3f.mockapi.io/api/products');
+    return this.http.get<Product[]>('https://localhost:7289/api/products');
   }
 
   createProduct(dto: ProductDto) {
     return this.http.post<Product>(
-      'https://6a34abf68248ee962fa58a3f.mockapi.io/api/products',
+      'https://localhost:7289/api/products',
       dto
     );
   }
 
   editProduct(id: string, dto: ProductDto) {
     return this.http.put<Product>(
-      `https://6a34abf68248ee962fa58a3f.mockapi.io/api/products/${id}`,
+      `https://localhost:7289/api/products/${id}`,
       dto
     )
   }
 
   deleteProduct(id: string) {
-    return this.http.delete<Product>(`https://6a34abf68248ee962fa58a3f.mockapi.io/api/products/${id}`)
+    return this.http.delete<Product>(`https://localhost:7289/api/products/${id}`)
   }
 }
