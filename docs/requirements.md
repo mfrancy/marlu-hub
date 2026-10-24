@@ -37,14 +37,36 @@ Cada produto deve contemplar:
 - preço de venda;
 - quantidade em estoque.
 
-Os campos acima foram identificados como necessários; a obrigatoriedade individual
-deve ser refinada quando o fluxo de cadastro for detalhado.
+No MVP, são obrigatórios:
+
+- código;
+- nome;
+- preço de compra;
+- preço de venda;
+- quantidade em estoque;
+- imagem para publicação no catálogo.
+
+O código é informado manualmente conforme o código da revista e deve ser único.
+Produtos sem imagem não podem ser publicados no catálogo.
+O preço de compra é administrativo e será usado nas métricas de lucro; nunca deve
+ser exibido no catálogo público.
+
+Quando um produto for inativado manualmente, ele será arquivado, preservando seu
+histórico e impedindo novas edições ou operações.
+
+Regras de validação:
+
+- o preço de venda pode ser zero, mas nunca negativo;
+- o estoque inicial deve ser um número inteiro maior ou igual a zero.
 
 Regras confirmadas:
 
 - A quantidade em estoque é contada em unidades inteiras.
 - A revendedora pode corrigir manualmente o estoque.
-- Vendas acima do estoque são permitidas somente mediante confirmação explícita.
+- Vendas e saídas manuais não podem reduzir o estoque abaixo de zero.
+- Registrar uma venda reduz o estoque do produto, mas não remove o produto do cadastro.
+- Produtos que já aparecem em vendas não podem ser excluídos permanentemente; podem
+  apenas ser inativados ou ocultados quando essa necessidade existir.
 - O catálogo não exibe produtos sob encomenda.
 - A disponibilidade é automática:
   - `Disponível` quando o estoque é maior que zero;
@@ -52,6 +74,14 @@ Regras confirmadas:
 - Apenas produtos com estoque maior que zero aparecem no catálogo público.
 - Produtos que chegam a estoque zero deixam de aparecer automaticamente.
 - Não haverá exceção manual para anunciar produto sem estoque.
+
+Cada ajuste manual de estoque deve registrar:
+
+- tipo do ajuste, entrada ou saída;
+- quantidade ajustada;
+- motivo ou observação;
+- estoque anterior e posterior;
+- data e hora do ajuste.
 
 ## Vendas
 
@@ -164,11 +194,5 @@ automaticamente e não usará a API oficial do WhatsApp.
 
 ## Ponto de retomada
 
-A próxima pergunta da entrevista é:
-
-> Produtos que já aparecem em vendas poderão ser excluídos permanentemente, ou devem
-> permanecer cadastrados e apenas ficar inativos/ocultos para preservar o histórico?
-
-Também permanece pendente o detalhamento do histórico e dos campos obrigatórios dos
-ajustes manuais de estoque, cuja pergunta foi adiada durante a sessão.
-
+A próxima pergunta da entrevista é se um produto arquivado poderá ser reativado
+posteriormente.

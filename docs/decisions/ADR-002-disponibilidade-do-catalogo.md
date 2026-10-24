@@ -16,6 +16,8 @@ A disponibilidade será derivada automaticamente da quantidade em estoque:
 - estoque igual a zero: produto indisponível e oculto no catálogo.
 
 Não haverá exceção manual para exibir produtos sem estoque ou sob encomenda.
+O produto permanece cadastrado quando chega a estoque zero e volta a ficar disponível
+automaticamente após uma nova entrada de estoque.
 
 O catálogo exibirá preço de venda e informações descritivas, mas não exibirá preço de
 compra nem quantidade exata em estoque.
@@ -30,4 +32,3 @@ com a API oficial e sem envio automático.
 - Produtos sob encomenda ficam fora do catálogo do MarluHub.
 - O telefone da revendedora deve ser configurável de forma segura, embora o número
   definido para o escopo atual seja `11970431430`.
-
