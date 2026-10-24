@@ -1,31 +1,46 @@
 ﻿using AutoMapper;
-using MarluHub.Api.Data;
 using MarluHub.Api.DTOs.Products;
 using MarluHub.Api.Entities;
+using MarluHub.Api.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace MarluHub.Api.Services;
 
-public class ProductService
+public sealed class ProductService : IProductService
 {
-    private readonly MarluHubContext _context;
+    private readonly IProductRepository _repository;
     private readonly IMapper _mapper;
 
-    public ProductService(MarluHubContext context, IMapper mapper)
+    public ProductService(IProductRepository repository, IMapper mapper)
     {
-        _context = context;
+        _repository = repository;
         _mapper = mapper;
     }
 
-    public async Task<List<ResponseProductDto>> GetAllAsync(int page, int pageSize)
+    public async Task<IReadOnlyList<ResponseProductDto>> GetAllAsync(
+        int page,
+        int pageSize,
+        CancellationToken cancellationToken = default)
     {
-        var products = await _context.Products.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+        if (page < 1 || pageSize is < 1 or > 100)
+        {
+            throw new ArgumentOutOfRangeException(nameof(pageSize), "Page must be positive and page size must be between 1 and 100.");
+        }
+
+        var products = await _repository.Query()
+            .AsNoTracking()
+            .OrderBy(product => product.Name)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
         return _mapper.Map<List<ResponseProductDto>>(products);
     }
 
-    public async Task<ResponseProductDto?> GetByIdAsync(Guid id)
+    public async Task<ResponseProductDto?> GetByIdAsync(
+        Guid id,
+        CancellationToken cancellationToken = default)
     {
-        var product = await _context.Products.FindAsync(id);
+        var product = await _repository.GetByIdAsync(id, cancellationToken);
 
         if (product is null)
         {
@@ -35,23 +50,28 @@ public class ProductService
         return _mapper.Map<ResponseProductDto>(product);
     }
 
-    public async Task<ResponseProductDto> CreateAsync(CreateProductDto dto)
+    public async Task<ResponseProductDto> CreateAsync(
+        CreateProductDto dto,
+        CancellationToken cancellationToken = default)
     {
         var product = _mapper.Map<Product>(dto);
 
         product.CreatedAt = DateTime.UtcNow;
         product.UpdatedAt = DateTime.UtcNow;
 
-        _context.Add(product);
-        await _context.SaveChangesAsync();
+        await _repository.AddAsync(product, cancellationToken);
+        await _repository.SaveChangesAsync(cancellationToken);
 
         return _mapper.Map<ResponseProductDto>(product);
 
     }
 
-    public async Task<ResponseProductDto?> UpdateAsync(Guid id, CreateProductDto dto)
+    public async Task<ResponseProductDto?> UpdateAsync(
+        Guid id,
+        UpdateProductDto dto,
+        CancellationToken cancellationToken = default)
     {
-        var product = await _context.Products.FindAsync(id);
+        var product = await _repository.GetByIdAsync(id, cancellationToken);
 
         if (product is null)
         {
@@ -62,23 +82,23 @@ public class ProductService
         _mapper.Map(dto, product);
 
         product.UpdatedAt = DateTime.UtcNow;
-        await _context.SaveChangesAsync();
+        await _repository.SaveChangesAsync(cancellationToken);
 
         return _mapper.Map<ResponseProductDto>(product);
     }
 
 
-    public async Task<bool> DeleteAsync(Guid id)
+    public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var product = await _context.Products.FindAsync(id);
+        var product = await _repository.GetByIdAsync(id, cancellationToken);
 
         if (product is null)
         {
             return false;
         }
 
-        _context.Remove(product);
-        await _context.SaveChangesAsync();
+        _repository.Remove(product);
+        await _repository.SaveChangesAsync(cancellationToken);
         return true;
 
     }

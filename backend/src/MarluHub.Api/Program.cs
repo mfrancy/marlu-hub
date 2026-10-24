@@ -1,67 +1,82 @@
+using MarluHub.Api;
 using MarluHub.Api.Data;
+using MarluHub.Api.Interfaces;
 using MarluHub.Api.Mapping;
+using MarluHub.Api.Repositories;
 using MarluHub.Api.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddScoped<ProductService>();
-builder.Services.AddDbContext<MarluHubContext>(options => {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddOptions<CorsOptions>()
+    .Bind(builder.Configuration.GetSection(CorsOptions.SectionName))
+    .Validate(options => options.AllowedOrigins.All(IsValidOrigin),
+        "CORS origins must be absolute HTTP or HTTPS origins.")
+    .ValidateOnStart();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    throw new InvalidOperationException(
+        "The 'ConnectionStrings:DefaultConnection' configuration is required. " +
+        "Set it through environment variables, user secrets, or an external configuration provider.");
+}
+
+builder.Services.AddDbContext<MarluHubContext>(options =>
+{
+    options.UseNpgsql(connectionString, npgsql => npgsql.EnableRetryOnFailure());
 });
+builder.Services.AddHealthChecks()
+    .AddCheck<DatabaseHealthCheck>("database");
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAutoMapper(cfg =>
-{
-    cfg.AddProfile<ProductProfile>();
-});
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAngular", policy =>
-    {
-        policy
-            .WithOrigins("http://localhost:4200")
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
-});
+builder.Services.AddAutoMapper(cfg => cfg.AddProfile<ProductProfile>());
+builder.Services.AddCors();
 
 var app = builder.Build();
 
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseCors("AllowAngular");
-app.MapControllers();
+else
+{
+    app.UseHsts();
+}
+
 app.UseHttpsRedirection();
-
-var summaries = new[]
+app.UseExceptionHandler();
+app.Use(async (context, next) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    context.Response.Headers["X-Content-Type-Options"] = "nosniff";
+    context.Response.Headers["X-Frame-Options"] = "DENY";
+    context.Response.Headers["Referrer-Policy"] = "no-referrer";
+    await next();
+});
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+var corsOptions = app.Services.GetRequiredService<IOptions<CorsOptions>>().Value;
+app.UseCors(policy => policy
+    .WithOrigins(corsOptions.AllowedOrigins)
+    .AllowAnyHeader()
+    .AllowAnyMethod());
+
+app.MapHealthChecks("/health");
+app.MapControllers();
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+static bool IsValidOrigin(string origin)
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    return Uri.TryCreate(origin, UriKind.Absolute, out var uri)
+        && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps)
+        && uri.AbsolutePath == "/"
+        && string.IsNullOrEmpty(uri.Query)
+        && string.IsNullOrEmpty(uri.Fragment);
 }
